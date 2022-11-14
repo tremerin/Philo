@@ -36,7 +36,7 @@ OBJS        = $(addprefix $(SRC_DIR), $(SRC_FILES:.c=.o))
 BONUS_SRC   = $(addprefix $(BONUS_DIR), $(BONUS_FILES))
 BONUS_OBJS  = $(addprefix $(BONUS_DIR), $(BONUS_FILES:.c=.o))
 CC          = gcc
-CFLAGS      = -Wall -Werror -Wextra
+CFLAGS      = -Wall -Werror -Wextra -pthread
 RM          = rm -f
 
 .c.o:

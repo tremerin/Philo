@@ -14,11 +14,13 @@
 # define PHILO_BONUS_H
 
 # include <sys/time.h>
+# include <sys/stat.h>
 # include <semaphore.h>
 # include <pthread.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <fcntl.h>
 
 # define NC		"\e[0m"
 # define RED	"\e[31m"
@@ -48,7 +50,7 @@ typedef struct s_table
 	int			time_sleep;
 	int			time_think;
 	int			end;
-	sem_t		sem_philo;
+	sem_t		*sem_philo;
 }	t_table;
 
 void	set_the_table(t_table *table);
