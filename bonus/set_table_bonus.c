@@ -11,16 +11,19 @@
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
-/*
-void static	init_philo(t_table *table)
-{
 
+void static	init_philo(t_table *table, int pos)
+{
+	table->philo.pos = pos;
+	if (table->pid[pos] == 0)
+		printf("%d\n", pos);
 }
-*/
+
 void static	set_philo(t_table *table, int pos)
 {
 	table->end++;
 
+	init_philo(table, pos);
 	sem_wait(table->sem_philo);
 	printf("philo: %d\n", pos);
 	sem_post(table->sem_philo);
@@ -35,7 +38,7 @@ void	set_the_table(t_table *table)
 	i = 0;
 	pairs = table->num_philo / 2;
 	printf("pairs = %d\n", pairs);
-	table->philo = ft_calloc(table->num_philo, sizeof(t_philo));
+	//table->philo = ft_calloc(table->num_philo, sizeof(t_philo));
 	table->pid = malloc(sizeof(int) * table->num_philo);
 	sem_unlink("/forks");
 	table->sem_philo = sem_open("/forks", O_CREAT, 0644, pairs);

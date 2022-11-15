@@ -40,7 +40,8 @@ typedef struct s_philo
 
 typedef struct s_table
 {
-	t_philo		*philo;
+	//t_philo		*philo;
+	t_philo		philo;
 	time_t		time_start;
 	pid_t		*pid;
 	int			num_philo;
