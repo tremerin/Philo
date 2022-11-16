@@ -28,6 +28,14 @@
 # define YELLOW	"\e[33m"
 # define BLUE	"\e[36m"
 
+/*
+> state: el estado del filosofo:
+	0 = muerto;
+	1 = dormido;
+	2 = pensando;
+	3 = hambriento;
+	4 = comiendo;
+*/
 typedef struct s_philo
 {
 	int			pos;
@@ -40,7 +48,6 @@ typedef struct s_philo
 
 typedef struct s_table
 {
-	//t_philo		*philo;
 	t_philo		philo;
 	time_t		time_start;
 	pid_t		*pid;
@@ -63,5 +70,10 @@ void	*ft_calloc(size_t nitems, size_t size);
 time_t	get_time_in_ms(void);
 int		time_to_think(t_table *table);
 time_t	time_elapsed(t_table *table);
+void	print_state(t_table *table, char *str);
+void	check_state(t_table *table);
+void	next_state(t_table *table);
+void	eat_spaghetti(t_table *table);
+void	finish_eating(t_table *table);
 
 #endif
