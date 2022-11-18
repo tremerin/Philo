@@ -53,6 +53,7 @@ typedef struct s_table
 	pthread_t	control;
 	time_t		time_start;
 	pid_t		*pid;
+	int			pairs;
 	int			num_philo;
 	int			meals;
 	int			time_die;

@@ -19,6 +19,7 @@ void	eat_spaghetti(t_table *table)
 	table->philo.next_state = get_time_in_ms() + table->time_eat;
 	table->philo.meals++;
 	print_state(table, "is eating");
+	printf("philo %d meals: %d\n", table->philo.name, table->philo.meals);
 }
 
 void	finish_eating(t_table *table)
