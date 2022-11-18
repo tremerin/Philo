@@ -55,5 +55,27 @@ void	set_the_table(t_table *table)
 			init_philo(table, i);
 		i++;
 	}
+	pthread_create(&table->control, NULL, routine, table);
 	//sem_unlink("/forks");
+}
+
+void	*routine(void *data)
+{
+	t_table		*table;
+	int			i;
+
+	i = 0;
+	table = (t_table *)data;
+	while (1)
+	{
+		while (i < table->num_philo)
+		{
+			if (table->pid[i] == 0)
+			{
+				printf("philo: %d", table->philo.name);
+				//check philos
+			}
+		}
+	}
+	return (NULL);
 }

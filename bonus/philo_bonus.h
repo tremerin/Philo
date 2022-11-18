@@ -49,6 +49,7 @@ typedef struct s_philo
 typedef struct s_table
 {
 	t_philo		philo;
+	pthread_t	control;
 	time_t		time_start;
 	pid_t		*pid;
 	int			num_philo;
@@ -75,5 +76,6 @@ void	check_state(t_table *table);
 void	next_state(t_table *table);
 void	eat_spaghetti(t_table *table);
 void	finish_eating(t_table *table);
+void	*routine(void *data);
 
 #endif
