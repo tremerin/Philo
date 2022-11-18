@@ -52,6 +52,7 @@ void	check_state(t_table *table)
 	{
 		print_state(table, "died");
 		table->philo.state = 0;
+		close_processes(table);
 	}
 	else if (table->philo.state == 3)
 	{

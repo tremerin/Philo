@@ -21,6 +21,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <fcntl.h>
+# include <signal.h>
 
 # define NC		"\e[0m"
 # define RED	"\e[31m"
@@ -77,5 +78,6 @@ void	next_state(t_table *table);
 void	eat_spaghetti(t_table *table);
 void	finish_eating(t_table *table);
 void	*routine(void *data);
+void	close_processes(t_table *table);
 
 #endif

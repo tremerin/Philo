@@ -48,6 +48,7 @@ void	set_the_table(t_table *table)
 	table->end = 1;
 	table->time_think = time_to_think(table);
 	table->time_start = get_time_in_ms();
+	//pthread_create(&table->control, NULL, routine, table);
 	while (i < table->num_philo)
 	{
 		table->pid[i] = fork();
@@ -55,8 +56,20 @@ void	set_the_table(t_table *table)
 			init_philo(table, i);
 		i++;
 	}
-	pthread_create(&table->control, NULL, routine, table);
+	//pthread_create(&table->control, NULL, routine, table);
 	//sem_unlink("/forks");
+}
+
+void	close_processes(t_table *table)
+{
+	int		i;
+
+	i = 0;
+	while (i < table->num_philo)
+	{
+		kill(table->pid[i], 9);
+		i++;
+	}
 }
 
 void	*routine(void *data)
@@ -66,6 +79,19 @@ void	*routine(void *data)
 
 	i = 0;
 	table = (t_table *)data;
+	while (i < table->num_philo)
+	{
+		kill(table->pid[i], 9);
+		/*
+		if (table->pid[i] == 0)
+		{
+			kill(table->pid[i], 9);
+			//printf("soy %d\n", table->philo.name);
+		}
+		*/
+		i++;
+	}
+	/*
 	while (1)
 	{
 		while (i < table->num_philo)
@@ -77,5 +103,6 @@ void	*routine(void *data)
 			}
 		}
 	}
+	*/
 	return (NULL);
 }
