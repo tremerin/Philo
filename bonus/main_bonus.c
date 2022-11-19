@@ -43,3 +43,20 @@ int	main(int argc, char **argv)
 }
 
 /* cerrar todos los hijos y los semaforos */
+/* ejemplo waitpid
+pid_t ret = c2b_popen4("myprog", pin, pout, perr, 0);
+
+if ( ret > 0 ) {
+    int status;
+
+    if ( waitpid(ret, &status, 0) == -1 ) {
+        perror("waitpid() failed");
+        exit(EXIT_FAILURE);
+    }
+
+    if ( WIFEXITED(status) ) {
+        int es = WEXITSTATUS(status);
+        printf("Exit status was %d\n", es);
+    }
+}
+*/

@@ -30,6 +30,8 @@ BONUS_FILES = main_bonus.c \
 			parse_bonus.c \
 			set_table_bonus.c \
 			time_bonus.c \
+			states_bonus.c \
+			eat_bonus.c
 
 SRC	        = $(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJS        = $(addprefix $(SRC_DIR), $(SRC_FILES:.c=.o))
