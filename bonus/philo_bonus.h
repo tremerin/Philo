@@ -15,6 +15,8 @@
 
 # include <sys/time.h>
 # include <sys/stat.h>
+# include <sys/types.h>
+# include <sys/wait.h>
 # include <semaphore.h>
 # include <pthread.h>
 # include <unistd.h>
@@ -22,6 +24,9 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <signal.h>
+
+# define DIED 1
+# define FULL 2
 
 # define NC		"\e[0m"
 # define RED	"\e[31m"
@@ -60,6 +65,7 @@ typedef struct s_table
 	int			time_eat;
 	int			time_sleep;
 	int			time_think;
+	int			one_fork;
 	int			end;
 	sem_t		*sem_philo;
 }	t_table;

@@ -12,21 +12,22 @@
 
 #include "philo_bonus.h"
 
-void static	set_philo(t_table *table, int pos)
+static void	set_philo(t_table *table, int pos)
 {
 	table->philo.pos = pos;
 	table->philo.name = pos + 1;
 	table->philo.state = 1;
+	table->philo.meals = 0;
 	table->philo.next_state = get_time_in_ms();
 	table->philo.to_die = get_time_in_ms() + table->time_die;
 }
 
-void static	init_philo(t_table *table, int pos)
+static void	init_philo(t_table *table, int pos)
 {
 	printf("Philo: %d\n", pos);
 	set_philo(table, pos);
 	next_state(table);
-	while (table->end)
+	while (1)
 	{
 		usleep(500);
 		check_state(table);
@@ -40,15 +41,13 @@ void	set_the_table(t_table *table)
 
 	i = 0;
 	table->pairs = table->num_philo / 2;
-	printf("pairs = %d\n", table->pairs);
-	printf("philos = %d\n", table->num_philo);
+	table->one_fork = 0;
 	table->pid = malloc(sizeof(int) * table->num_philo);
 	sem_unlink("/forks");
 	table->sem_philo = sem_open("/forks", O_CREAT, 0644, table->pairs);
 	table->end = 1;
 	table->time_think = time_to_think(table);
 	table->time_start = get_time_in_ms();
-	//pthread_create(&table->control, NULL, routine, table);
 	while (i < table->num_philo)
 	{
 		table->pid[i] = fork();
@@ -56,8 +55,6 @@ void	set_the_table(t_table *table)
 			init_philo(table, i);
 		i++;
 	}
-	//pthread_create(&table->control, NULL, routine, table);
-	//sem_unlink("/forks");
 }
 
 void	close_processes(t_table *table)
@@ -70,39 +67,4 @@ void	close_processes(t_table *table)
 		kill(table->pid[i], 9);
 		i++;
 	}
-}
-
-void	*routine(void *data)
-{
-	t_table		*table;
-	int			i;
-
-	i = 0;
-	table = (t_table *)data;
-	while (i < table->num_philo)
-	{
-		kill(table->pid[i], 9);
-		/*
-		if (table->pid[i] == 0)
-		{
-			kill(table->pid[i], 9);
-			//printf("soy %d\n", table->philo.name);
-		}
-		*/
-		i++;
-	}
-	/*
-	while (1)
-	{
-		while (i < table->num_philo)
-		{
-			if (table->pid[i] == 0)
-			{
-				printf("philo: %d", table->philo.name);
-				//check philos
-			}
-		}
-	}
-	*/
-	return (NULL);
 }

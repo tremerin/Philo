@@ -14,15 +14,21 @@
 
 void	eat_spaghetti(t_table *table)
 {
+	print_state(table, "has taken a fork");
+	print_state(table, "has taken a fork");
 	table->philo.state = 4;
 	table->philo.to_die = get_time_in_ms() + table->time_die;
 	table->philo.next_state = get_time_in_ms() + table->time_eat;
 	table->philo.meals++;
 	print_state(table, "is eating");
-	printf("philo %d meals: %d\n", table->philo.name, table->philo.meals);
 }
 
 void	finish_eating(t_table *table)
 {
 	sem_post(table->sem_philo);
+	if (table->meals > -1 && table->philo.meals >= table->meals)
+	{
+		
+		exit(FULL);
+	}
 }

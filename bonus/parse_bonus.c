@@ -41,9 +41,7 @@ int	ft_atoi(const char *str)
 int	is_number(char *str)
 {
 	int		i;
-	int		sign;
 
-	sign = 0;
 	i = 0;
 	while (str[i])
 	{

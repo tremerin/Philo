@@ -51,13 +51,20 @@ void	check_state(t_table *table)
 	if (time >= table->philo.to_die)
 	{
 		print_state(table, "died");
-		table->philo.state = 0;
-		close_processes(table);
+		exit(DIED);
 	}
 	else if (table->philo.state == 3)
 	{
-		sem_wait(table->sem_philo);
-		eat_spaghetti(table);
+		if (table->num_philo > 1)
+		{
+			sem_wait(table->sem_philo);
+			eat_spaghetti(table);
+		}
+		else if (table->num_philo == 1 && !table->one_fork)
+		{
+			print_state(table, "has taken a fork");
+			table->one_fork = 1;
+		}	
 	}
 	else if (time >= table->philo.next_state)
 		next_state(table);

@@ -12,14 +12,22 @@
 
 #include "philo_bonus.h"
 
-static void	wait_processes(t_table *table)
+static void wait_processes(t_table *table)
 {
+	int		state;
+	int		exit;
 	int		i;
 
 	i = 0;
 	while (i < table->num_philo)
 	{
-		waitpid(table->pid[i], NULL, 0);
+		waitpid(table->pid[i], &state, 0);
+		exit = WEXITSTATUS(state);
+		if (exit == 1)
+		{
+			close_processes(table);
+		}
+		printf("%d\n", exit);
 		i++;
 	}
 }
@@ -41,22 +49,3 @@ int	main(int argc, char **argv)
 	//free
 	return (0);
 }
-
-/* cerrar todos los hijos y los semaforos */
-/* ejemplo waitpid
-pid_t ret = c2b_popen4("myprog", pin, pout, perr, 0);
-
-if ( ret > 0 ) {
-    int status;
-
-    if ( waitpid(ret, &status, 0) == -1 ) {
-        perror("waitpid() failed");
-        exit(EXIT_FAILURE);
-    }
-
-    if ( WIFEXITED(status) ) {
-        int es = WEXITSTATUS(status);
-        printf("Exit status was %d\n", es);
-    }
-}
-*/
