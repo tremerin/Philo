@@ -18,7 +18,9 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
-# include <limits.h>
+
+# define INT_MAX 2147483647 
+# define INT_MIN -2147483647 
 
 # define NC		"\e[0m"
 # define RED	"\e[31m"
@@ -40,7 +42,6 @@ typedef struct s_fork
 	2 = pensando;
 	3 = hambriento;
 	4 = comiendo;
-> right_handed: diestro(0) o zurdo(1)
 > pos: posición del filosofo en la mesa de 0 a N
 > pos_left_fork: posición de su tenedor izquierdo
 > pos_right_fork: posición de su tenedor derecho
@@ -92,10 +93,6 @@ time_t	time_elapsed(t_table *table);
 void	print_state(t_table *table, int pos, char *str);
 void	full_indigestion(t_table *table);
 void	free_mutex(t_table *table);
-/*testing*/
-int 	ft_parse_int(char *argv, int *int_dest);
-int		argument_validation2(t_table *table, int argc, char **argv);
-int		ft_atoli(const char *str);
-int		is_number2(char *str);
+long 	ft_atoli(const char *str);
 
 #endif

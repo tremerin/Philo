@@ -28,6 +28,9 @@
 # define DIED 1
 # define FULL 2
 
+# define INT_MAX 2147483647 
+# define INT_MIN -2147483647 
+
 # define NC		"\e[0m"
 # define RED	"\e[31m"
 # define GREEN	"\e[32m"
@@ -74,6 +77,7 @@ typedef struct s_table
 void	set_the_table(t_table *table);
 int		argument_validation(t_table *table, int argc, char **argv);
 int		ft_atoi(const char *str);
+long	ft_atoli(const char *str);
 int		is_number(char *str);
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t nitems, size_t size);

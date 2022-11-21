@@ -38,7 +38,7 @@ int	ft_atoi(const char *str)
 	return (num * sig);
 }
 
-int	ft_atoli(const char *str)
+long	ft_atoli(const char *str)
 {
 	int			i;
 	long int	num;
@@ -63,22 +63,7 @@ int	ft_atoli(const char *str)
 	}
 	return (num * sig);
 }
-/*
-int	is_number(char *str)
-{
-	int		i;
 
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] >= '0' && str[i] <= '9')
-			i++;
-		else
-			return (0);
-	}
-	return (1);
-}
-*/
 int	is_number(char *str)
 {
 	int			i;
@@ -96,22 +81,4 @@ int	is_number(char *str)
 	if (num < INT_MAX && num > INT_MIN)
 		return (1);
 	return (0);
-}
-
-int ft_parse_int(char *argv, int *int_dest)
-{
-	long int	num;
-
-	if (is_number(argv))
-	{
-		num = ft_atoli(argv);
-		if (num < INT_MAX && num > INT_MIN)
-		{
-			*int_dest = num;
-			return (1);
-		}
-		return (0);
-	}
-	else
-		return (0);
 }
