@@ -44,7 +44,9 @@ void	set_the_table(t_table *table)
 	table->one_fork = 0;
 	table->pid = malloc(sizeof(int) * table->num_philo);
 	sem_unlink("/forks");
+	sem_unlink("/write");
 	table->sem_philo = sem_open("/forks", O_CREAT, 0644, table->pairs);
+	table->sem_write = sem_open("/write", O_CREAT, 0644, 1);
 	table->end = 1;
 	table->time_think = time_to_think(table);
 	table->time_start = get_time_in_ms();
@@ -67,4 +69,8 @@ void	close_processes(t_table *table)
 		kill(table->pid[i], 9);
 		i++;
 	}
+	sem_unlink("/forks");
+	sem_close(table->sem_philo);
+	sem_unlink("/write");
+	sem_close(table->sem_write);
 }

@@ -14,11 +14,13 @@
 
 static void wait_processes(t_table *table)
 {
-	int		state;
-	int		exit;
-	int		i;
+	int state;
+	int exit;
+	int i;
+	int	dead;
 
 	i = 0;
+	dead = 0;
 	while (i < table->num_philo)
 	{
 		waitpid(table->pid[i], &state, 0);
@@ -26,15 +28,17 @@ static void wait_processes(t_table *table)
 		if (exit == 1)
 		{
 			close_processes(table);
+			dead = 1;
 		}
-		printf("%d\n", exit);
 		i++;
 	}
-}
+	if (!dead)
+		printf("%sEveryone has finished eating%s\n", GREEN, NC);
+}	
 
-int	main(int argc, char **argv)
+int main(int argc, char **argv)
 {
-	t_table		table;
+	t_table table;
 
 	if (argument_validation(&table, argc, argv))
 	{
@@ -46,6 +50,5 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	wait_processes(&table);
-	//free
 	return (0);
 }

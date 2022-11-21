@@ -33,6 +33,30 @@ int	argument_validation(t_table *table, int argc, char **argv)
 	if (number_of_arguments(argc, argv))
 	{
 		table->num_philo = ft_atoi(argv[1]);
+		if (table->num_philo <= 0)
+			return (0);
+		table->time_die = ft_atoi(argv[2]);
+		table->time_eat = ft_atoi(argv[3]);
+		table->time_sleep = ft_atoi(argv[4]);
+		if (argc == 6)
+			table->meals = ft_atoi(argv[5]);
+		else
+			table->meals = -1;
+	}
+	else
+	{
+		return (0);
+	}
+	return (1);
+}
+
+int	argument_validation2(t_table *table, int argc, char **argv)
+{
+	if (number_of_arguments(argc, argv))
+	{
+		table->num_philo = ft_atoi(argv[1]);
+		if (table->num_philo <= 0)
+			return (0);
 		table->time_die = ft_atoi(argv[2]);
 		table->time_eat = ft_atoi(argv[3]);
 		table->time_sleep = ft_atoi(argv[4]);

@@ -16,7 +16,7 @@ int	main(int argc, char **argv)
 {
 	t_table		table;
 
-	if (argument_validation(&table, argc, argv))
+	if (argument_validation2(&table, argc, argv))
 	{
 		set_the_table(&table);
 	}

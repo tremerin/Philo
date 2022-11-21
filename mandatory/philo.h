@@ -18,6 +18,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <limits.h>
 
 # define NC		"\e[0m"
 # define RED	"\e[31m"
@@ -91,5 +92,10 @@ time_t	time_elapsed(t_table *table);
 void	print_state(t_table *table, int pos, char *str);
 void	full_indigestion(t_table *table);
 void	free_mutex(t_table *table);
+/*testing*/
+int 	ft_parse_int(char *argv, int *int_dest);
+int		argument_validation2(t_table *table, int argc, char **argv);
+int		ft_atoli(const char *str);
+int		is_number2(char *str);
 
 #endif

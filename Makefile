@@ -26,7 +26,6 @@ SRC_FILES   = arg_validation.c \
 BONUS_DIR   = ./bonus/
 BONUS_FILES = main_bonus.c \
 			arg_validation_bonus.c \
-			ft_calloc_bonus.c \
 			parse_bonus.c \
 			set_table_bonus.c \
 			time_bonus.c \
@@ -59,3 +58,5 @@ fclean:
 	$(RM) $(OBJS) $(BONUS_OBJS) $(NAME) $(NAME_BONUS)
 
 re: fclean all
+
+rebonus: fclean bonus

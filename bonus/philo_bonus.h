@@ -68,6 +68,7 @@ typedef struct s_table
 	int			one_fork;
 	int			end;
 	sem_t		*sem_philo;
+	sem_t		*sem_write;
 }	t_table;
 
 void	set_the_table(t_table *table);
@@ -84,7 +85,6 @@ void	check_state(t_table *table);
 void	next_state(t_table *table);
 void	eat_spaghetti(t_table *table);
 void	finish_eating(t_table *table);
-void	*routine(void *data);
 void	close_processes(t_table *table);
 
 #endif
