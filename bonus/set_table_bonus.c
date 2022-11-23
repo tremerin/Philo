@@ -20,11 +20,11 @@ static void	set_philo(t_table *table, int pos)
 	table->philo.meals = 0;
 	table->philo.next_state = get_time_in_ms();
 	table->philo.to_die = get_time_in_ms() + table->time_die;
+	pthread_create(&table->philo.philo_thread, NULL, routine, table);
 }
 
 static void	init_philo(t_table *table, int pos)
 {
-	printf("Philo: %d\n", pos);
 	set_philo(table, pos);
 	next_state(table);
 	while (1)
@@ -32,7 +32,6 @@ static void	init_philo(t_table *table, int pos)
 		usleep(500);
 		check_state(table);
 	}
-	exit(0);
 }
 
 void	set_the_table(t_table *table)

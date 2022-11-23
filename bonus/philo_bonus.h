@@ -53,6 +53,7 @@ typedef struct s_philo
 	time_t		to_die;
 	int			state;
 	int			meals;
+	pthread_t	philo_thread;
 }	t_philo;
 
 typedef struct s_table
@@ -90,5 +91,6 @@ void	next_state(t_table *table);
 void	eat_spaghetti(t_table *table);
 void	finish_eating(t_table *table);
 void	close_processes(t_table *table);
+void	*routine(void *data);
 
 #endif

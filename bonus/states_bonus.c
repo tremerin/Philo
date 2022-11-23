@@ -48,12 +48,7 @@ void	check_state(t_table *table)
 	time_t	time;
 
 	time = get_time_in_ms();
-	if (time >= table->philo.to_die)
-	{
-		print_state(table, "died");
-		exit(DIED);
-	}
-	else if (table->philo.state == 3)
+	if (table->philo.state == 3)
 	{
 		if (table->num_philo > 1)
 		{
@@ -68,4 +63,23 @@ void	check_state(t_table *table)
 	}
 	else if (time >= table->philo.next_state)
 		next_state(table);
+}
+
+void	*routine(void *data)
+{
+	t_table		*table;
+	time_t 		time;
+
+	table = (t_table *)data;
+	while (1)
+	{
+		usleep(1000);
+		time = get_time_in_ms();
+		if (time >= table->philo.to_die)
+		{
+			print_state(table, "died");
+			exit(DIED);
+		}
+	}
+	return (NULL);
 }

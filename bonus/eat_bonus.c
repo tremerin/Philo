@@ -30,5 +30,4 @@ void	finish_eating(t_table *table)
 	sem_post(table->sem_philo);
 	if (table->meals > -1 && table->philo.meals >= table->meals)
 		exit(FULL);
-
 }
