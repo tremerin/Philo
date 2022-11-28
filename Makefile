@@ -12,7 +12,7 @@
 
 NAME        = philo
 NAME_BONUS  = philo_bonus
-SRC_DIR     = ./mandatory/
+SRC_DIR     = ./philo/
 SRC_FILES   = arg_validation.c \
 			eat_spaghetti.c \
 			ft_calloc.c \
@@ -23,7 +23,7 @@ SRC_FILES   = arg_validation.c \
 			time.c \
 			free.c
 
-BONUS_DIR   = ./bonus/
+BONUS_DIR   = ./philo_bonus/
 BONUS_FILES = main_bonus.c \
 			arg_validation_bonus.c \
 			parse_bonus.c \
@@ -46,17 +46,15 @@ RM          = rm -f
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) -o $(NAME)
+	$(CC) $(OBJS) -o $(SRC_DIR)$(NAME)
 
 bonus: $(BONUS_OBJS)
-	$(CC) $(BONUS_OBJS) -o $(NAME_BONUS)
+	$(CC) $(BONUS_OBJS) -o $(BONUS_DIR)$(NAME_BONUS)
 
 clean:
 	$(RM) $(OBJS) $(BONUS_OBJS)
 
 fclean:
-	$(RM) $(OBJS) $(BONUS_OBJS) $(NAME) $(NAME_BONUS)
+	$(RM) $(OBJS) $(BONUS_OBJS) $(SRC_DIR)$(NAME) $(BONUS_DIR)$(NAME_BONUS)
 
 re: fclean all
-
-rebonus: fclean bonus
